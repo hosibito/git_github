@@ -6,59 +6,45 @@ from PyQt5.QtWidgets import (
     QMessageBox,
     QPlainTextEdit,
     QHBoxLayout,
-    QLabel,
 )
 from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import QDate, Qt
 
 
 class View(QWidget):
     def __init__(self):
         super().__init__()
-        self.date = QDate.currentDate()
         self.initUI()
 
     def initUI(self):
-        # 현재 날짜를 표시하는 라벨 생성
-        self.lbl1 = QLabel(self.date.toString(Qt.DefaultLocaleLongDate), self)
+        self.te1 = QPlainTextEdit()  # QPlainTextEdit 위젯 생성
+        self.te1.setReadOnly(True)  # 편집 불가능하도록 설정
 
-        # 텍스트를 편집할 수 있는 플레인 텍스트 에디터 생성
-        self.te1 = QPlainTextEdit()
-        self.te1.setReadOnly(True)
+        self.btn1 = QPushButton(
+            "Message", self
+        )  # "Message"라는 텍스트를 가진 QPushButton 위젯 생성
+        self.btn2 = QPushButton("Clear", self)  # "Clear"라는 텍스트를 가진 QPushButton 위젯 생성
 
-        # 메시지 버튼 생성
-        self.btn1 = QPushButton("Message", self)
-        # 클리어 버튼 생성
-        self.btn2 = QPushButton("Clear", self)
+        hbox = QHBoxLayout()  # 수평 박스 레이아웃 생성
+        hbox.addStretch(1)  # 공간을 늘려서 버튼을 오른쪽으로 정렬
+        hbox.addWidget(self.btn1)  # 버튼1을 수평 박스에 추가
+        hbox.addWidget(self.btn2)  # 버튼2를 수평 박스에 추가
 
-        # 메시지 버튼과 클리어 버튼을 수평으로 정렬하는 레이아웃 생성
-        hbox = QHBoxLayout()
-        hbox.addStretch(1)
-        hbox.addWidget(self.btn1)
-        hbox.addWidget(self.btn2)
+        vbox = QVBoxLayout()  # 수직 박스 레이아웃 생성
+        vbox.addWidget(self.te1)  # QPlainTextEdit 위젯을 수직 박스에 추가
+        vbox.addLayout(hbox)  # 수평 박스 레이아웃을 수직 박스에 추가
+        vbox.addStretch(1)  # 공간을 늘려서 수직 박스를 아래로 정렬
 
-        # 플레인 텍스트 에디터와 버튼 레이아웃, 날짜 라벨을 수직으로 정렬하는 레이아웃 생성
-        vbox = QVBoxLayout()
-        vbox.addWidget(self.te1)
-        vbox.addLayout(hbox)
-        vbox.addWidget(self.lbl1)
+        self.setLayout(vbox)  # 수직 박스 레이아웃을 윈도우의 레이아웃으로 설정
 
-        # 수직 레이아웃을 위젯의 레이아웃으로 설정
-        self.setLayout(vbox)
-
-        # 창의 제목 설정
-        self.setWindowTitle("Calculator")
-        # 창의 아이콘 설정
-        self.setWindowIcon(QIcon("icon.png"))
-        # 창의 크기 설정
-        self.resize(256, 256)
-        # 창을 화면에 표시
-        self.show()
+        self.setWindowTitle("Calculator")  # 윈도우 타이틀 설정
+        self.setWindowIcon(QIcon("icon.png"))  # 윈도우 아이콘 설정
+        self.resize(256, 256)  # 윈도우 크기 설정
+        self.show()  # 윈도우를 화면에 표시
 
     def activateMessage(self):
-        # 버튼이 클릭되었을 때 메시지를 플레인 텍스트 에디터에 추가
-        self.te1.appendPlainText("Button clicked!")
+        self.te1.appendPlainText(
+            "Button clicked!"
+        )  # QPlainTextEdit에 "Button clicked!" 텍스트 추가
 
     def clearMessage(self):
-        # 플레인 텍스트 에디터의 내용을 지움
-        self.te1.clear()
+        self.te1.clear()  # QPlainTextEdit의 텍스트 모두 지우기
