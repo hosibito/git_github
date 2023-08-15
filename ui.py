@@ -19,48 +19,40 @@ class View(QWidget):
         self.initUI()
 
     def initUI(self):
-        # 텍스트 편집기 생성
-        self.te1 = QPlainTextEdit()
-        self.te1.setReadOnly(True)
+        self.te1 = QPlainTextEdit()  # QPlainTextEdit 위젯 생성
+        self.te1.setReadOnly(True)  # 편집 불가능하도록 설정
 
-        # 메시지 버튼 생성
-        self.btn1 = QPushButton("Message", self)
-        # 클리어 버튼 생성
-        self.btn2 = QPushButton("Clear", self)
+        self.btn1 = QPushButton("Calc", self)  # "Calc"라는 텍스트를 가진 QPushButton 위젯 생성
+        self.btn2 = QPushButton("Clear", self)  # "Clear"라는 텍스트를 가진 QPushButton 위젯 생성
 
-        # 첫 번째 입력 상자 생성
-        self.le1 = QLineEdit("0", self)
-        self.le1.setAlignment(QtCore.Qt.AlignRight)
+        self.le1 = QLineEdit("0", self)  # "0"이라는 텍스트를 가진 QLineEdit 위젯 생성
+        self.le1.setAlignment(QtCore.Qt.AlignRight)  # 오른쪽 정렬 설정
+        self.le1.setFocus(True)  # 포커스 설정
+        self.le1.selectAll()  # 텍스트 전체 선택
 
-        # 두 번째 입력 상자 생성
-        self.le2 = QLineEdit("0", self)
-        self.le2.setAlignment(QtCore.Qt.AlignRight)
+        self.le2 = QLineEdit("0", self)  # "0"이라는 텍스트를 가진 QLineEdit 위젯 생성
+        self.le2.setAlignment(QtCore.Qt.AlignRight)  # 오른쪽 정렬 설정
 
-        # 연산자 선택 상자 생성
-        self.cb = QComboBox(self)
-        self.cb.addItems(["+", "-", "*", "/"])
+        self.cb = QComboBox(self)  # QComboBox 위젯 생성
+        self.cb.addItems(["+", "-", "*", "/"])  # "+", "-", "*", "/" 아이템 추가
 
-        # 수식 입력 상자를 가로로 정렬하는 레이아웃 생성
-        hbox_formular = QHBoxLayout()
-        hbox_formular.addWidget(self.le1)
-        hbox_formular.addWidget(self.cb)
-        hbox_formular.addWidget(self.le2)
+        hbox_formular = QHBoxLayout()  # 수평 박스 레이아웃 생성
+        hbox_formular.addWidget(self.le1)  # le1 위젯 추가
+        hbox_formular.addWidget(self.cb)  # cb 위젯 추가
+        hbox_formular.addWidget(self.le2)  # le2 위젯 추가
 
-        # 버튼을 가로로 정렬하는 레이아웃 생성
-        hbox = QHBoxLayout()
-        hbox.addStretch(1)
-        hbox.addWidget(self.btn1)
-        hbox.addWidget(self.btn2)
+        hbox = QHBoxLayout()  # 수평 박스 레이아웃 생성
+        hbox.addStretch(1)  # 공간 추가
+        hbox.addWidget(self.btn1)  # btn1 위젯 추가
+        hbox.addWidget(self.btn2)  # btn2 위젯 추가
 
-        # 전체 레이아웃 생성
-        vbox = QVBoxLayout()
-        vbox.addWidget(self.te1)
-        vbox.addLayout(hbox_formular)
-        vbox.addLayout(hbox)
-        vbox.addStretch(1)
+        vbox = QVBoxLayout()  # 수직 박스 레이아웃 생성
+        vbox.addWidget(self.te1)  # te1 위젯 추가
+        vbox.addLayout(hbox_formular)  # hbox_formular 레이아웃 추가
+        vbox.addLayout(hbox)  # hbox 레이아웃 추가
+        vbox.addStretch(1)  # 공간 추가
 
-        # 전체 레이아웃을 윈도우에 설정
-        self.setLayout(vbox)
+        self.setLayout(vbox)  # 레이아웃 설정
 
         # 윈도우 타이틀 설정
         self.setWindowTitle("Calculator")
@@ -77,4 +69,4 @@ class View(QWidget):
 
     # 메시지 클리어 함수
     def clearMessage(self):
-        self.te1.clear()
+        self.te1.clear()  # te1의 텍스트 모두 지우기
