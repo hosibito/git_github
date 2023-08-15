@@ -13,6 +13,7 @@ from PyQt5.QtGui import QIcon
 from PyQt5 import QtCore
 
 # 개발자A 가 주석을 추가했습니다.
+# 개발자B 가 주석을 추가했습니다.
 
 
 class View(QWidget):
