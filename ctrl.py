@@ -32,3 +32,8 @@ class Control:
 
     def pow(self, a, b):
         return pow(a, b)
+
+
+# dev2 브런치용 변경 주석1
+# dev2 브런치용 변경 주석2
+# dev2 브런치용 변경 주석3
