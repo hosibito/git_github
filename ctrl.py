@@ -10,5 +10,8 @@ class Control:
         self.view.btn1.clicked.connect(self.calculate)
         self.view.btn2.clicked.connect(self.view.clearMessage)
 
-    def sum(self, a, b):  # dev2 : 덧셈함수 추가.
-        return a + b
+    def sum(self, a, b):  # devA : 덧셈함수 수정(오류발생시 대응)
+        try:
+            return a + b
+        except:
+            return "Calculation Error"
